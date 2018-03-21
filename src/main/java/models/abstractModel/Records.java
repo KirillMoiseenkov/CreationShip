@@ -4,14 +4,14 @@ import models.interfaces.IModel;
 
 public  abstract  class Records implements IModel {
 
-    private int Id;
-    private int pictureId;
-    private int videoId;
-    private String title;
-    private String description;
-    private int likes;
+    protected Integer Id;
+    protected Integer pictureId;
+    protected Integer videoId;
+    protected String title;
+    protected String description;
+    protected Integer likes;
 
-    public int getId() {
+    public Integer getId() {
         return Id;
     }
 
@@ -19,7 +19,7 @@ public  abstract  class Records implements IModel {
         Id = id;
     }
 
-    public int getPictureId() {
+    public Integer getPictureId() {
         return pictureId;
     }
 
@@ -27,7 +27,7 @@ public  abstract  class Records implements IModel {
         this.pictureId = pictureId;
     }
 
-    public int getVideoId() {
+    public Integer getVideoId() {
         return videoId;
     }
 
@@ -51,7 +51,7 @@ public  abstract  class Records implements IModel {
         this.description = description;
     }
 
-    public int getLikes() {
+    public Integer getLikes() {
         return likes;
     }
 

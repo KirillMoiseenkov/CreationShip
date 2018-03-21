@@ -10,7 +10,7 @@ public class User implements IModel{
     private String name;
     private String lastName;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
