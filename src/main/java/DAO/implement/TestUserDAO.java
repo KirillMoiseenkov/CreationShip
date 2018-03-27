@@ -3,6 +3,7 @@ package DAO.implement;
 
 import DAO.DAOInterfaces.IDAOEntity;
 import models.main.TestUser;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,8 +12,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
+
 @Repository
-@EnableTransactionManagement
 public class TestUserDAO implements IDAOEntity<TestUser>{
 
     @PersistenceContext
@@ -29,8 +30,8 @@ public class TestUserDAO implements IDAOEntity<TestUser>{
 
 
     @Override
-    @Transactional
+    //@Transactional
     public List<TestUser> getAll() {
-        return entityManager.createQuery("SELECT p FROM user p").getResultList();
+        return entityManager.createQuery("SELECT p FROM TestUser p").getResultList();
     }
 }

@@ -40,21 +40,31 @@ public class Main {
         entityManager.close();
         entityManagerFactory.close();
      */
-        ApplicationContext context = new ClassPathXmlApplicationContext("mainSpringConf.xml");
 
-//        TestUserHibernateService testUserHibernateService =
-//                (TestUserHibernateService) context.getBean("testUserHibernateService");
-//        System.out.println( testUserHibernateService.getTestUser());
-
-        TestUserDAO testUserDAO = (TestUserDAO) context.getBean("testUserDAO");
 
         TestUser user = new TestUser();
 
 
 
-        user.setAge(120);
+        user.setAge(125);
         user.setFirstname("i love you new record11 yes");
         user.setLastname("Allah");
+        ApplicationContext context = new ClassPathXmlApplicationContext("mainSpringConf.xml");
+
+        TestUserHibernateService testUserHibernateService =
+                (TestUserHibernateService) context.getBean("testUserHibernateService");
+
+        testUserHibernateService.saveAndUpdate(user);
+
+        System.out.println(testUserHibernateService.findAll().size());
+
+
+
+//        System.out.println( testUserHibernateService.getTestUser());
+
+//        TestUserDAO testUserDAO = (TestUserDAO) context.getBean("testUserDAO");
+
+
 
 
         /*if(testUserDAO.entityManager == null)

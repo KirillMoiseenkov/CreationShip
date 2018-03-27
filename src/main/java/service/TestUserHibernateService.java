@@ -14,7 +14,6 @@ import java.util.List;
 @Service
 public class TestUserHibernateService {
 
-/*
     TestUserDAO testUserDAO;
 
     @Autowired
@@ -22,21 +21,18 @@ public class TestUserHibernateService {
         this.testUserDAO = testUserDAO;
     }
 
-*/
-   private User testUser;
 
-    @Autowired
-    public void setTestUser(User testUser) {
-        this.testUser = testUser;
-    }
+    @Transactional
+    public void saveAndUpdate(TestUser testUser){
 
-    public User getTestUser() {
-        return testUser;
+
+        testUserDAO.persist(testUser);
+
     }
 
     @Transactional
     public List<TestUser> findAll() {
-        return null;//testUserDAO.getAll();
+        return testUserDAO.getAll();
     }
 
 }
