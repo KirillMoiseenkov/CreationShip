@@ -13,8 +13,8 @@ public class TestUser implements Serializable{
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @Column(name = "age")
