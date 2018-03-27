@@ -2,8 +2,15 @@ package models.main;
 
 import models.abstractModel.Records;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "project")
 public class Project extends Records {
 
+    @Column(name = "participant")
     private int participant;
 
     public int getParticipant() {

@@ -1,28 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--<beans xmlns="http://www.springframework.org/schema/beans"-->
+       <!--xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+       <!--xmlns:context="http://www.springframework.org/schema/context"-->
+       <!--xmlns:p="http://jboss.org/xml/ns/javax/validation/mapping" xmlns:util="http://java.sun.com/xml/ns/persistence"-->
+       <!--xmlns:tx="http://www.springframework.org/schema/tx"-->
+       <!--xsi:schemaLocation="http://www.springframework.org/schema/beans-->
+
+<!--http://www.springframework.org/schema/beans/spring-beans-2.5.xsd-->
+<!--http://www.springframework.org/schema/context-->
+<!--http://www.springframework.org/schema/context/spring-context-2.5.xsd"-->
+
+<!--&gt;-->
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:p="http://jboss.org/xml/ns/javax/validation/mapping" xmlns:util="http://java.sun.com/xml/ns/persistence"
-       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
-http://www.springframework.org/schema/context
-http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+  http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+  http://www.springframework.org/schema/aop
+  http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+  http://www.springframework.org/schema/context
+  http://www.springframework.org/schema/context/spring-context-2.5.xsd
+  http://www.springframework.org/schema/tx
+  http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
     <context:annotation-config />
 
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
     <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
 
-        <bean id="user" class="models.main.User">
-            <property name="id" value="10"/>
-        </bean>
+    <bean id="persistenceAnnotation"
+          class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
 
-    <!--<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">-->
-        <!--<property name="driverClassName" value="com.mysql.jdbc.Driver"/>-->
-        <!--<property name="url" value="jdbc:mysql://localhost:3306/test"/>-->
-        <!--<property name="username" value="root"/>-->
-        <!--<property name="password" value="root"/>-->
-    <!--</bean>-->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="models"/>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+        </property>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+            </props>
+        </property>
+    </bean>
+
 
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -32,7 +63,17 @@ http://www.springframework.org/schema/context/spring-context-2.5.xsd">
         <property name="password" value="root"/>
     </bean>
 
-    <bean id="sessionFactory"
+    <bean id="testUserDAO" class="DAO.implement.TestUserDAO">
+    </bean>
+
+    <bean id="testUserHibernateService" class="service.TestUserHibernateService">
+    </bean>
+
+     <bean id="user" class="models.main.User">
+        <property name="id" value="10"/>
+    </bean>
+
+  <!--  <bean id="sessionFactory"
           class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="configLocation" value="classpath:hibernate.cfg.xml" />
@@ -45,27 +86,11 @@ http://www.springframework.org/schema/context/spring-context-2.5.xsd">
           class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
-
-
+-->
 
 
 </beans>
 
-<!--<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">-->
-<!--<property name="dataSource" ref="dataSource"/>-->
-<!--<property name="hibernateProperties">-->
-    <!--<props>-->
-        <!--<prop key="hibernate.connetcion.driver_class">com.mysql.jdbc.Driver</prop>-->
-        <!--<prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/test</prop>-->
-        <!--<prop key="hibernate.connection.username">root</prop>-->
-        <!--<prop key="hibernate.connection.password">root</prop>-->
-        <!--<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>-->
-        <!--<prop key="hibernate.swow_sql">true</prop>-->
-        <!--<prop key="hibernate.hbm2ddl.auto">update</prop>-->
-    <!--</props>-->
-<!--</property>-->
-
-<!--</bean>-->
 
 <!--<bean id="transactionManager"-->
       <!--class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">-->

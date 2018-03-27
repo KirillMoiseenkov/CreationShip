@@ -2,13 +2,30 @@ package models.abstractModel;
 
 import models.interfaces.IModel;
 
+import javax.persistence.*;
+
+@Entity
+@Table
 public  abstract  class Records implements IModel {
 
+    @javax.persistence.Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     protected Integer Id;
+
+    @Column(name = "pictureId")
     protected Integer pictureId;
+
+    @Column(name = "videoId")
     protected Integer videoId;
+
+    @Column(name = "title")
     protected String title;
+
+    @Column(name = "description")
     protected String description;
+
+    @Column(name = "likes")
     protected Integer likes;
 
     public Integer getId() {

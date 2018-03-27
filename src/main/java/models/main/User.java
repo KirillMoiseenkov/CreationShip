@@ -2,13 +2,30 @@ package models.main;
 
 import models.interfaces.IModel;
 
+import javax.persistence.*;
+
+
+@Entity
+@Table(name = "user")
 public class User implements IModel{
 
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @Column(name = "password")
     private String password;
+
+    @Column(name = "login")
     private String login;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "lastname")
     private String lastName;
+
 
     public Integer getId() {
         return id;
