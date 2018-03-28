@@ -14,12 +14,6 @@ public  abstract  class Records implements IModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
 
-    @Column(name = "pictureId")
-    protected Integer pictureId;
-
-    @Column(name = "videoId")
-    protected Integer videoId;
-
     @Column(name = "title")
     protected String title;
 
@@ -28,6 +22,12 @@ public  abstract  class Records implements IModel {
 
     @Column(name = "likes")
     protected Integer likes;
+
+    @Column(name = "pictureId")
+    protected Integer pictureId;
+
+    @Column(name = "videoId")
+    protected Integer videoId;
 
     public Long getId() {
         return id;

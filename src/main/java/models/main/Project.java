@@ -2,36 +2,46 @@ package models.main;
 
 import models.abstractModel.Records;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "project")
-public class Project extends Records {
+public class Project {
 
-        @Column(name = "participant")
-        private int participant;
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    protected Long id;
 
-        public int getParticipant() {
-            return participant;
-        }
+    @Column(name = "title")
+    private String title;
 
-        public void setParticipant(int participant) {
-            this.participant = participant;
-        }
+    @Column(name = "description")
+    private String description;
 
-        @Override
-        public String toString() {
-            return "Project{" +
-                    "Id=" + this.getId() +
-                    ", pictureId=" + this.getPictureId() +
-                    ", videoId=" + this.getVideoId() +
-                    ", title='" + this.getTitle() + '\'' +
-                    ", description='" + this.getDescription() + '\'' +
-                    ", likes=" + this.getLikes() + '\'' +
-                    ", participant=" + this.participant  +
-                    '}';
+    @Column(name = "likes")
+    private Integer likes;
 
-        }
+    @Column(name = "pictureId")
+    private Integer pictureId;
+
+    @Column(name = "videoId")
+    private Integer videoId;
+
+    @Column(name = "users")
+    private Integer users;
+
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", likes=" + likes +
+                ", pictureId=" + pictureId +
+                ", videoId=" + videoId +
+                ", users=" + users +
+                '}';
+    }
 }

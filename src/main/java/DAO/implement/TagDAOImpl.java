@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
-public class TagDAOImpl implements ITagDAO{
+public class TagDAOImpl implements ITagDAO {
 
     @PersistenceContext
     public EntityManager entityManager;
@@ -46,7 +46,7 @@ public class TagDAOImpl implements ITagDAO{
 
     @Override
     public Tag getByName(String name) {
-      return (Tag) entityManager.createQuery("SELECT p FROM Tag p WHERE p.name = :name").setParameter("name",name).getResultList().get(0);
+      return (Tag) entityManager.createQuery("SELECT p FROM Tag p WHERE p.name = :name").setParameter("name",name).getSingleResult();
 
     }
 }

@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface IUserDAO extends IDAOEntity<User>{
 
-    public List<User> getByName();
-    public List<User> getByLastName();
-    public List<User> getByCombination(String name, String lastName);
+    public List getByName(String name);
+    public List getByLastName(String lastName);
+    public List getByCombination(String name, String lastName);
 
 
 }
