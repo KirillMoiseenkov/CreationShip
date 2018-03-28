@@ -12,7 +12,7 @@ public class Tag implements IModel {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @Column(name = "name")
     private String name;
@@ -25,12 +25,20 @@ public class Tag implements IModel {
         this.name = name;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     @Override
-    public Integer getId() {
-        return null;
+    public Long getId() {
+        return getId();
+    }
+
+    @Override
+    public String toString() {
+        return "Tag{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

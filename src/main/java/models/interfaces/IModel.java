@@ -2,6 +2,6 @@ package models.interfaces;
 
 public interface IModel {
 
-    public Integer getId();
+    public Long getId();
 
 }

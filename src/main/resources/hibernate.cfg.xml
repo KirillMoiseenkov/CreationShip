@@ -10,8 +10,6 @@
         <property name="swow_sql">true</property>
         <property name="hbm2ddl.auto">update</property>
 
-        <!--<mapping resource="user.cfg.xml" />-->
-        <!--<mapping class="net.viralpatel.hibernate.User"/>-->
         <mapping class="models.main.TestUser"/>
 
     </session-factory>

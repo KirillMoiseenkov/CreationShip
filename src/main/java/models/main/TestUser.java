@@ -67,4 +67,13 @@ public class TestUser implements Serializable{
         this.lastname = lastname;
     }
 
+    @Override
+    public String toString() {
+        return "TestUser{" +
+                "id=" + id +
+                ", age=" + age +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                '}';
+    }
 }

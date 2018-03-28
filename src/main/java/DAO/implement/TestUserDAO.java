@@ -19,18 +19,32 @@ public class TestUserDAO implements IDAOEntity<TestUser>{
     @PersistenceContext
     public EntityManager entityManager;
 
+
     @Override
-    public TestUser getByID() {
-        return null;
+    public void remove(TestUser testUser) {
+     TestUser temporary = entityManager.merge(testUser);
+     entityManager.remove(temporary);
     }
 
-    public void persist(TestUser testUser){
+    @Override
+    public void removeById(Long id) {
+        TestUser temporary = entityManager.find(TestUser.class, id);
+        entityManager.remove(temporary);
+
+    }
+
+
+    @Override
+    public TestUser getByID(Long id) {
+        return entityManager.find(TestUser.class, id);
+    }
+
+    public void saveOrUpdate(TestUser testUser){
         entityManager.persist(testUser);
         }
 
 
     @Override
-    //@Transactional
     public List<TestUser> getAll() {
         return entityManager.createQuery("SELECT p FROM TestUser p").getResultList();
     }

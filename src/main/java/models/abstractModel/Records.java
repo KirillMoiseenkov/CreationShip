@@ -5,13 +5,14 @@ import models.interfaces.IModel;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name = "record")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public  abstract  class Records implements IModel {
 
-    @javax.persistence.Id
+    @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    protected Integer Id;
+    protected Long id;
 
     @Column(name = "pictureId")
     protected Integer pictureId;
@@ -28,12 +29,12 @@ public  abstract  class Records implements IModel {
     @Column(name = "likes")
     protected Integer likes;
 
-    public Integer getId() {
-        return Id;
+    public Long getId() {
+        return id;
     }
 
-    public void setId(int id) {
-        Id = id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Integer getPictureId() {
@@ -79,7 +80,7 @@ public  abstract  class Records implements IModel {
     @Override
     public String toString() {
         return "Records{" +
-                "Id=" + Id +
+                "id=" + id +
                 ", pictureId=" + pictureId +
                 ", videoId=" + videoId +
                 ", title='" + title + '\'' +

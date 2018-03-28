@@ -12,7 +12,7 @@ public class User implements IModel{
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     @Column(name = "password")
     private String password;
@@ -27,11 +27,11 @@ public class User implements IModel{
     private String lastName;
 
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

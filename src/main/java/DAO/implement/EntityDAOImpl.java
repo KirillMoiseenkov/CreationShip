@@ -22,7 +22,6 @@ public class EntityDAOImpl implements IUserDAO{
     EntityManager entityManager;
 
     @Override
-    @Transactional
     public List<User> getAll() {
         return entityManager.createQuery("SELECT usr FROM User usr").getResultList();
     }
@@ -43,7 +42,22 @@ public class EntityDAOImpl implements IUserDAO{
     }
 
     @Override
-    public User getByID() {
+    public void saveOrUpdate(User user) {
+
+    }
+
+    @Override
+    public void remove(User user) {
+
+    }
+
+    @Override
+    public void removeById(Long id) {
+
+    }
+
+    @Override
+    public User getByID(Long id) {
         return null;
     }
 }

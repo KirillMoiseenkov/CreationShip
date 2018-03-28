@@ -25,9 +25,26 @@ public class TestUserHibernateService {
     @Transactional
     public void saveAndUpdate(TestUser testUser){
 
+        testUserDAO.saveOrUpdate(testUser);
+    }
 
-        testUserDAO.persist(testUser);
+    @Transactional
+    public void remove(TestUser testUser)
+    {
+        testUserDAO.remove(testUser);
 
+    }
+
+    @Transactional
+    public void removeByID(Long id)
+    {
+        testUserDAO.removeById(id);
+
+    }
+
+    @Transactional
+    public TestUser getById(Long id){
+       return testUserDAO.getByID(id);
     }
 
     @Transactional
