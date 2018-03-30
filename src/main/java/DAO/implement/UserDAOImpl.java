@@ -29,13 +29,34 @@ public class UserDAOImpl implements IUserDAO {
     }
 
     @Override
-    public List getByCombination(String name, String lastName) {
+    public List getByNameLastNameCombination(String name, String lastName) {
         return entityManager.createQuery
                 ("SELECT p FROM User p WHERE p.lastName = :name and p.name = : name")
                 .setParameter("name",name)
                 .setParameter("lastName",lastName)
                 .getResultList();
 
+    }
+
+    @Override
+    public List getByPassword(String password) {
+        return null;
+    }
+
+    @Override
+    public List getByLogin(String login) {
+        return entityManager.createQuery("SELECT p FROM User p WHERE p.login = :login")
+                .setParameter("login",login)
+                .getResultList();
+    }
+
+    @Override
+    public List getByPasswordLoginCombination(String login, String password) {
+        return entityManager.createQuery("SELECT p FROM User p WHERE p.login = :login " +
+                "and p.password = : password")
+                .setParameter("",login)
+                .setParameter("",password)
+                .getResultList();
     }
 
     @Override

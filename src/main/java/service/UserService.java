@@ -15,5 +15,31 @@ public class UserService extends IDAOEntityService<IUserDAO,User> {
         return (User) dao.getByName(name);
     }
 
+    @Transactional(readOnly = true)
+    public User findByLastName(String name){
+        return (User) dao.getByLastName(name);
+    }
+
+    @Transactional(readOnly = true)
+    public User getByCombination(String name, String lastName){
+        return (User) dao.getByNameLastNameCombination(name, lastName);
+    }
+
+    @Transactional(readOnly = true)
+    public User getByLogin(String login){
+        return (User) dao.getByLogin(login);
+    }
+
+    @Transactional(readOnly = true)
+    public User getByPassword(String password){
+        return (User) dao.getByPassword(password);
+    }
+
+    @Transactional(readOnly = true)
+    public User getByCombinationLoginPassword(String login, String password){
+        return (User) dao.getByPasswordLoginCombination(login, password);
+    }
+
+
 
 }

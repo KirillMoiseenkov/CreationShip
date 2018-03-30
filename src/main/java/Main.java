@@ -1,31 +1,35 @@
-import models.main.Tag;
+import DAO.implement.EntityDAOImpl.EntityDAOImpl;
 import models.main.User;
+import models.main.UserInfo;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import service.TagService;
-import service.UserService;
-
-import java.util.List;
+import service.UserInfoService;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException {
 
         ApplicationContext context = new ClassPathXmlApplicationContext("mainSpringConf.xml");
 
-       
+        UserInfoService userInfoService = context.getBean(UserInfoService.class);
 
-       /* User user = new User();
-        user.setLastName("last");
-        user.setName("Name");
-        user.setPassword("boo");
-        user.setLogin("poof");
+        UserInfo userInfo = new UserInfo();
 
-        UserService userService = context.getBean(UserService.class);
+        User user = new User();
 
-        userService.saveOrUpdate(user);
+        /*user.setPassword("kirill123");
+        user.setName("kirill");
+        user.setLastName("moiseenkov");
+        */user.setId(1L);
 
-        System.out.println(userService.getById(1L).toString());*/
+      /*  userInfo.setName("Kirill");
+        userInfo.setLastName("Moiseenkov");
+        userInfo.setUser(user);
+        userInfoService.saveOrUpdate(userInfo);
+*/
+        System.out.println(userInfoService.getById(1L).toString());
+
+
     }
 
 

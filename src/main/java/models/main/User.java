@@ -3,14 +3,21 @@ package models.main;
 import models.interfaces.IModel;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
 @Table(name = "user")
 public class User implements IModel{
 
+   // private Set<UserInfo> userInfoSet = new HashSet<>();
+
+    @OneToMany(mappedBy="user")
+    private Set<UserInfo> users;
+
     @Id
-    @Column(name = "id")
+    @Column(name = "id", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
@@ -25,6 +32,12 @@ public class User implements IModel{
 
     @Column(name = "lastname")
     private String lastName;
+
+
+   /* @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    public Set<UserInfo> getUserInfoSet(){
+        return this.userInfoSet;
+    }*/
 
 
     public Long getId() {
@@ -66,6 +79,7 @@ public class User implements IModel{
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
 
     @Override
     public String toString() {
