@@ -23,7 +23,7 @@ public class TagDAOImpl implements ITagDAO {
 
     @Override
     public void removeById(Long id) {
-        Tag temporary = entityManager.find(Tag.class, id*1L);
+        Tag temporary = entityManager.find(Tag.class, id);
         entityManager.remove(temporary);
 
     }

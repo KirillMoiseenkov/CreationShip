@@ -30,10 +30,10 @@ public class UserDAOImpl implements IUserDAO {
 
     @Override
     public List getByNameLastNameCombination(String name, String lastName) {
-        return entityManager.createQuery
-                ("SELECT p FROM User p WHERE p.lastName = :name and p.name = : name")
-                .setParameter("name",name)
-                .setParameter("lastName",lastName)
+        return entityManager.
+                createNativeQuery("SELECT * FROM User WHERE name =  ? and lastName = ?",User.class)
+                .setParameter(1,name)
+                .setParameter(2,lastName)
                 .getResultList();
 
     }
@@ -52,10 +52,10 @@ public class UserDAOImpl implements IUserDAO {
 
     @Override
     public List getByPasswordLoginCombination(String login, String password) {
-        return entityManager.createQuery("SELECT p FROM User p WHERE p.login = :login " +
-                "and p.password = : password")
-                .setParameter("",login)
-                .setParameter("",password)
+        return entityManager.
+                createNativeQuery("SELECT * FROM User WHERE login =  ? and password = ?",User.class)
+                .setParameter(1,login)
+                .setParameter(2,password)
                 .getResultList();
     }
 

@@ -31,10 +31,10 @@ public class UserInfoDAOImpl implements IUserInfoDAO {
 
     @Override
     public List getByCombination(String name, String lastName) {
-        return entityManager.createQuery
-                ("SELECT p FROM user_info p WHERE p.lastName = :name and p.name = : name")
-                .setParameter("name",name)
-                .setParameter("lastName",lastName)
+        return entityManager.
+                createNativeQuery("SELECT * FROM user_info WHERE name =  ? and lastName = ?",UserInfo.class)
+                .setParameter(1,name)
+                .setParameter(2,lastName)
                 .getResultList();
 
     }
