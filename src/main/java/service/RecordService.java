@@ -12,7 +12,9 @@ import java.util.List;
 public class RecordService extends IDAOEntityService<RecordDAOImpl, Recrord> {
 
     @Transactional
-    public Recrord getByTitle(String title){return dao.getByTitle(title);}
+    public Recrord getByTitle(String title){
+        return dao.getByTitle(title);
+    }
 
     @Transactional
     public List<Recrord> getByLike(int value){return dao.getByLike(value);}

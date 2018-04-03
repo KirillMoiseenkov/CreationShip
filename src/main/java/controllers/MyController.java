@@ -17,7 +17,6 @@ import java.util.concurrent.atomic.AtomicLong;
 @RestController
 public class MyController {
 
-    private final AtomicLong counter = new AtomicLong();
 
     ApplicationContext context = new ClassPathXmlApplicationContext("mainSpringConf.xml");
 

@@ -2,6 +2,7 @@ package DAO.implement;
 
 import DAO.DAOInterfaces.IUserDAO;
 import models.main.User;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -10,6 +11,9 @@ import java.util.List;
 
 @Repository
 public class UserDAOImpl implements IUserDAO {
+
+    private static final Logger log = Logger.getLogger(UserDAOImpl.class);
+
 
     @PersistenceContext
     EntityManager entityManager;
@@ -82,6 +86,14 @@ public class UserDAOImpl implements IUserDAO {
 
     @Override
     public List<User> getAll() {
-        return  entityManager.createQuery("SELECT p FROM User p").getResultList();
+
+        List<User> users = entityManager.createQuery("SELECT p FROM User p").getResultList();
+
+        if(users == null)
+            log.warn("get all users return null");
+
+        log.trace("try to get all element users");
+
+        return users;
     }
 }

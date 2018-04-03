@@ -31,6 +31,61 @@ public class Project {
     @Column(name = "users")
     private Integer users;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Integer getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Integer likes) {
+        this.likes = likes;
+    }
+
+    public Integer getPictureId() {
+        return pictureId;
+    }
+
+    public void setPictureId(Integer pictureId) {
+        this.pictureId = pictureId;
+    }
+
+    public Integer getVideoId() {
+        return videoId;
+    }
+
+    public void setVideoId(Integer videoId) {
+        this.videoId = videoId;
+    }
+
+    public Integer getUsers() {
+        return users;
+    }
+
+    public void setUsers(Integer users) {
+        this.users = users;
+    }
 
     @Override
     public String toString() {
