@@ -6,10 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import service.UserService;
 
 import java.util.concurrent.atomic.AtomicLong;
@@ -22,10 +19,10 @@ public class MyController {
 
     UserService userService = context.getBean(UserService.class);
 
-    @GetMapping(value = "/hello")
-    public User hello(ModelMap model){
+    @GetMapping(value = "/hello/{id}")
+    public User hello(@PathVariable("id") Long id){
 
-        User user = new User();
+        /*User user = new User();
         user.setId(1L);
         user.setName("Kirill");
         user.setLogin("login");
@@ -33,9 +30,8 @@ public class MyController {
         user.setLastName("moiseenkov");
         //System.out.println("Pozor - hello");
         System.out.println("something");
-
-        //model.addAttribute("message", "Spring 3 MVC Hello World!!!");
-        return userService.getById(1L);//"MyHello";
+*/
+        return userService.getById(id);
 
     }
 
